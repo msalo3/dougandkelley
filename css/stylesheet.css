@@ -1,0 +1,35 @@
+body{
+  min-width: 1225px;
+  max-width: 1440px;
+}
+.mutebutton{
+  display: none;
+  position: absolute;
+  font-size: 30px;
+}
+.fakeButton{
+  font-size: 15px;
+}
+.basket{
+  clear: both;
+  float: right;
+  padding-bottom: 2px;
+  height: 518px;
+  width: 520px;
+}
+.disc{
+  position: absolute;
+  z-index: 101;
+  padding-top: 65px;
+}
+.golfInfo{
+  margin-top: 27%;
+  width: 25%;
+  padding-left: 30px;
+  font-size: 20px;
+  position: absolute;
+}
+.top{
+  width: 100%;
+  height: 10%;
+}

@@ -1,0 +1,12 @@
+.kell{
+  float: left;
+  padding-left: 200px;
+}
+.doug{
+  float: right;
+  padding-right: 200px;
+  padding-top: 30px;
+}
+body{
+  text-align: center;
+}

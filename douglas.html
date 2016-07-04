@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="UTF-8">
+        <title>DK</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/stylesheet.css">
+    </head>
+
+    <body onload="loadSound();">
+      <div class="top">
+        <button id="smash" class="fakeButton" onclick="hateSmash();">Oh My God Doug, I hate Smash.<br>Make it stop!</button><br>
+        <button id="hiddenSmash" class="mutebutton" onclick="mute();">Mute</button>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <img class="disc" src="./images/disc.png">
+          <p class="golfInfo">Click the disc to putt! <br>You need to make this shot to tie Marc!</p>
+        </div>
+        <div class="col-md-6">
+          <span><img class="basket" src="./images/dg_basket.jpg"></span>
+        </div>
+      </div>
+
+
+
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
+    <script>
+    var current;
+    var funny=true;
+    createjs.Sound.addEventListener("fileload", handler);
+    function handler(event){
+      if(event.id=="hyrule"){
+        playSong();
+      };
+    };
+    function loadSound(){
+      createjs.Sound.registerSounds([{src:"./music/hyrule.mp3", id:"hyrule"}, {src:"./music/homerun_bat.wav", id:"bat"}, {src:"./music/jigglypuff.ogg", id:"puff"}, {src:"./music/mario_song.mp3", id:"marioStage"}, {src:"./music/mario_fireball.wav", id:"fireball"}, {src:"./music/mario_taunt.wav", id:"taunt"}]);
+    };
+
+    function playSong(){
+      current = createjs.Sound.play("hyrule");
+      current.on("complete", function () {playAnother();});
+    };
+
+    function playAnother() {
+      current = createjs.Sound.play("marioStage");
+      current.on("complete", function () { playSong();});
+    };
+
+    function hateSmash(){
+      createjs.Sound.stop();
+      nope = createjs.Sound.play("taunt");
+      nope.on("complete", function () { playAnother();});
+    };
+
+    function mute(){
+      current.muted = !current.muted;
+    };
+    function marcWins(){
+      $(".golfInfo").html("Congratulations! Not on that putt, because it was awful, but on your engagement!<br><br><a href='/Users/marcsalo/Documents/DougKelley/homepage.html'>Click Here</a>");
+      $(".golfInfo").animate({left: '600px'});
+    };
+
+    $("#smash").click(function(){
+      $("#hiddenSmash").show();
+    });
+
+    $("#hiddenSmash").mouseover(function() {
+        $("#hiddenSmash").animate({left:'500px'});
+        $("#hiddenSmash").html('HAHAHAHAHAHAHA');
+    });
+
+    $(".disc").click(function(){
+      var disc = $(".disc");
+      disc.animate({left: '950px'},3000, "linear");
+      disc.animate({top: '+=60px', left: '+=50px'},1000);
+      disc.animate({top: '+=60px', left: '-=60px'},2000);
+      disc.animate({top: '+=300px'},400,function(){marcWins();});
+    });
+    </script>
+</html>
