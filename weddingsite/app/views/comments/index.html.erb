@@ -1,0 +1,14 @@
+<div>
+  <% name = "" %>
+  <%= @comments.each do |c| %>
+    <% @users.each do |user| %>
+      <% if(user.id == c.user_id) %>
+        <% name = user.first_name + user.last_name %>
+      <% end %>
+      <%= user.id %>
+      <%= name %>
+    <% end %>
+    <%= c.user_id %>
+    <br><%= c.text %><br>
+  <% end %>
+</div>
