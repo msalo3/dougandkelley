@@ -1,14 +1,22 @@
 <div>
-  <% name = "" %>
-  <%= @comments.each do |c| %>
-    <% @users.each do |user| %>
-      <% if(user.id == c.user_id) %>
-        <% name = user.first_name + user.last_name %>
+  <% @comments.each do |c| %>
+      <% @users.each do |u| %>
+        <% if(u.id == c.user_id) %>
+        <p class="username">
+          <%= u.first_name %>
+        </p>
+        <% end %>
       <% end %>
-      <%= user.id %>
-      <%= name %>
-    <% end %>
-    <%= c.user_id %>
-    <br><%= c.text %><br>
+    <p class="post">
+    <%= c.text %>
+    </p>
+    <br>
+  <% end %>
+</div>
+
+<div class="form">
+  <%= form_for(@comment) do |c| %>
+  <%= c.text_area :text, :placeholder => 'Write Comment Here' %>
+  <%= c.submit "Submit Comment" %>
   <% end %>
 </div>
