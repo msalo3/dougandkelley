@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
+  root 'users#index'
 
   get '/signup' => 'users#new'
-  resources :users
-  
-  resources :comments
+
 
   get '/login' => 'sessions#new'
 
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
   get '/logged_in' => 'sessions#logged_in'
 
   get '/comment/[:id]' => 'comments#show'
+  resources :users
+
+  resources :comments
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,10 @@
+<% if @user == nil %>
+  <%= link_to 'Sign-In', login_path %>
+  <%= link_to 'Register', signup_path %>
+<% else %>
+  <% @users.each do |u| %>
+  <p><%= u.first_name%><span>'s favorite memory!</span></p>
+  <%= image_tag u.pic.thumb.url %>
+  <% end %>
+  <%= link_to 'View comments', comments_path %>
+<% end %>
